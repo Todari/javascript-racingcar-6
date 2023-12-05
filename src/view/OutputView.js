@@ -15,4 +15,17 @@ export default class OutputView {
 
     Console.print(result);
   }
+
+  static printResult() {
+    Console.print(MESSAGE.outputResult);
+  }
+
+  static printEmptyLine() {
+    Console.print(MESSAGE.emptyLine);
+  }
+
+  static printWinners(winners) {
+    const str = winners.join(', ');
+    Console.print(MESSAGE.outputWinners(str));
+  }
 }

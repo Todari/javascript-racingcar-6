@@ -1,6 +1,5 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import OutputView from './view/OutputView.js';
-import { Console } from '@woowacourse/mission-utils';
 
 export default class Car {
   #name;
@@ -31,5 +30,13 @@ export default class Car {
 
   #printDisplacement() {
     OutputView.printCarDisplacement(this.#name, this.#displacement);
+  }
+
+  getName() {
+    return this.#name;
+  }
+
+  getDisplacement() {
+    return this.#displacement;
   }
 }
