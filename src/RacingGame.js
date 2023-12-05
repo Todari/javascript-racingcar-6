@@ -38,9 +38,17 @@ export default class RacingGame {
   }
 
   async #inputAttempts() {
-    const attempts = await InputView.attempts();
+    while (true) {
+      const input = await InputView.attempts();
 
-    return attempts;
+      try {
+        this.#validateAttempts(input);
+
+        return input.split(',');
+      } catch (error) {
+        OutputView.printError(error);
+      }
+    }
   }
 
   #validateNames(names) {
@@ -49,5 +57,13 @@ export default class RacingGame {
     }
 
     throw new Error("이름 오류");
+  }
+
+  #validateAttempts(attempts) {
+    if (REGEXP.attempts.test(attempts)) {
+      return true;
+    }
+
+    throw new Error("시도횟수 오류");
   }
 }
