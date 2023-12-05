@@ -7,4 +7,10 @@ export default class InputView {
 
     return carName;
   }
+
+  static async attempts() {
+    const attempts = await Console.readLineAsync(MESSAGE.inputAttempts);
+
+    return attempts;
+  }
 }
