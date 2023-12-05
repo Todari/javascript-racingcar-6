@@ -1,6 +1,7 @@
 import AdvanceCar from './AdvanceCar.js';
 import Car from './Car.js';
 import REGEXP from './constants/RegExp.js';
+import { AttemptInputError, CarNameInputError } from './error/CustomError.js';
 import InputView from './view/InputView.js';
 import OutputView from './view/OutputView.js';
 
@@ -56,7 +57,7 @@ export default class RacingGame {
       return true;
     }
 
-    throw new Error("이름 오류");
+    throw new CarNameInputError();
   }
 
   #validateAttempts(attempts) {
@@ -64,6 +65,6 @@ export default class RacingGame {
       return true;
     }
 
-    throw new Error("시도횟수 오류");
+    throw new AttemptInputError();
   }
 }
