@@ -1,15 +1,18 @@
 import AdvanceCar from './AdvanceCar.js';
 import Car from './Car.js';
+import REGEXP from './constants/RegExp.js';
 import InputView from './view/InputView.js';
+import OutputView from './view/OutputView.js';
 
 export default class RacingGame {
   #cars;
 
   constructor() {
     this.#cars = [];
+    this.#start();
   }
 
-  async start() {
+  async #start() {
     const names = await this.#inputCarName();
 
     names.forEach(name => {
@@ -17,20 +20,34 @@ export default class RacingGame {
     });
 
     const attempts = await this.#inputAttempts();
-
-
+    const advanceCar = new AdvanceCar(attempts, this.#cars);
   }
 
   async #inputCarName() {
-    const input = await InputView.carName();
-    const names = input.split(', ');
+    while (true) {
+      const input = await InputView.carName();
 
-    return names;
+      try {
+        this.#validateNames(input);
+
+        return input.split(',');
+      } catch (error) {
+        OutputView.printError(error);
+      }
+    }
   }
 
   async #inputAttempts() {
     const attempts = await InputView.attempts();
 
     return attempts;
+  }
+
+  #validateNames(names) {
+    if (REGEXP.carNames.test(names)) {
+      return true;
+    }
+
+    throw new Error("이름 오류");
   }
 }

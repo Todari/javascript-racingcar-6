@@ -2,7 +2,7 @@ import RacingGame from './RacingGame.js';
 
 class App {
   async play() {
-    new RacingGame().start();
+    const racingGame = new RacingGame();
   }
 }
 

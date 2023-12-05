@@ -5,9 +5,10 @@ export default class AdvanceCar {
   constructor(attempts, cars) {
     this.#attempts = attempts;
     this.#cars = cars;
+    this.#advanceCars();
   }
 
-  advanceCars() {
+  #advanceCars() {
     for (let i = 0; i < this.#attempts; i += 1) {
       this.#cars.forEach(car => {
         car.advance();
