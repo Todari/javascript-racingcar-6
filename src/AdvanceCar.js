@@ -1,13 +1,17 @@
 export default class AdvanceCar {
   #attempts;
+  #cars;
 
-  constructor(attempts) {
+  constructor(attempts, cars) {
     this.#attempts = attempts;
+    this.#cars = cars;
   }
 
-  advance() {
-    for (let i = 0; i < this.#attempts; i++) {
-      
+  advanceCars() {
+    for (let i = 0; i < this.#attempts; i += 1) {
+      this.#cars.forEach(car => {
+        car.advance();
+      });
     }
   }
 }
